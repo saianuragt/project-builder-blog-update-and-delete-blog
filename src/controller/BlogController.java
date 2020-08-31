@@ -68,7 +68,16 @@ public class BlogController extends HttpServlet {
 	private void listBlog(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		BlogDaoImpl blogDAO = new BlogDaoImpl();
-		List<Blog> listBlog = blogDAO.selectAllBlogs();
+		List<Blog> listBlog = null;
+		try {
+			listBlog = blogDAO.selectAllBlogs();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("listBlog", listBlog);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/blogListView.jsp");
 		dispatcher.forward(request, response);

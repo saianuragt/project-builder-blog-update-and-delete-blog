@@ -54,7 +54,13 @@ public class SignUpController extends HttpServlet {
 		user.setPassword(password);
 		UserDAO userdao=new UserDAO();
 		user.setDate(date);
-		int checkUser = userdao.signUp(user);
+		int checkUser = 0;
+		try {
+			checkUser = userdao.signUp(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		if(checkUser!=0)
 		{
